@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Probability Simulator Web App</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<body>
+
+    <h1 class="title">Probability Simulator</h1>
+
+    <div class="controls">
+        <label>Choose Experiment:</label>
+        <select id="experiment">
+            <option value="coin">Coin Flip</option>
+            <option value="dice">Dice Roll</option>
+        </select>
+
+        <label>Number of Trials:</label>
+        <input type="number" id="trials" value="200">
+
+        <button onclick="runSimulation()">Run Simulation</button>
+    </div>
+
+    <!-- ANIMATION AREA -->
+    <div class="animation-area">
+
+        <!-- 3D Coin -->
+        <div class="coin3d switchFade" id="coin3d">
+            <div class="side heads">
+                <img src="{{ url_for('static', filename='head.png') }}">
+            </div>
+            <div class="side tails">
+                <img src="{{ url_for('static', filename='tail.png') }}">
+            </div>
+        </div>
+
+        <!-- Dice Image -->
+        <img id="animationImage" class="diceImg switchFade"
+             src="{{ url_for('static', filename='dice1.png') }}">
+    </div>
+
+    <h2>Results (Bar Graph)</h2>
+    <div class="chart-container bar-chart-container">
+        <canvas id="resultsChart"></canvas>
+    </div>
+
+    <h2>Probability Over Time (Line Graph)</h2>
+    <div class="chart-container line-chart-container">
+        <canvas id="lineChart"></canvas>
+    </div>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+
+</body>
+</html>
