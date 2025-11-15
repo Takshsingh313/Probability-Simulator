@@ -2,7 +2,6 @@
 <html>
 <head>
     <title>Probability Simulator Web App</title>
-
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
@@ -15,32 +14,31 @@
         <label>Choose Experiment:</label>
         <select id="experiment">
             <option value="coin">Coin Flip</option>
-            <option value="dice">Dice Roll</option>
+            <option value="dice">Dice Roll (1 die)</option>
+            <option value="two_dice">Two Dice Sum (2–12)</option>
         </select>
 
         <label>Number of Trials:</label>
-        <input type="number" id="trials" value="200">
+        <input type="number" id="trials" value="200" min="10">
 
         <button onclick="runSimulation()">Run Simulation</button>
-
-        <!-- RESET BUTTON (Style A) -->
-        <button class="reset-btn" onclick="resetSimulation()">Reset</button>
+        <button onclick="resetSimulation()" class="reset-btn">Reset</button>
     </div>
 
-    <!-- ANIMATION AREA -->
     <div class="animation-area">
 
-        <!-- 3D COIN -->
-        <div class="coin3d switchFade" id="coin3d">
-            <div class="side heads">
-                <img src="{{ url_for('static', filename='head.png') }}">
-            </div>
-            <div class="side tails">
-                <img src="{{ url_for('static', filename='tail.png') }}">
-            </div>
+        <!-- LOGO (Home screen image) -->
+        <div id="logoBox" class="logo-box">
+            <img src="{{ url_for('static', filename='logo.png') }}" class="logo-img">
         </div>
 
-        <!-- 3D DICE CUBE -->
+        <!-- 3D COIN -->
+        <div class="coin3d switchFade" id="coin3d" style="display:none;">
+            <div class="side heads"><img src="{{ url_for('static', filename='head.png') }}"></div>
+            <div class="side tails"><img src="{{ url_for('static', filename='tail.png') }}"></div>
+        </div>
+
+        <!-- 3D DICE (single die) -->
         <div class="cube-container switchFade" id="cubeContainer" style="display:none;">
             <div class="cube" id="diceCube">
                 <div class="face face1"><img src="{{ url_for('static', filename='dice1.png') }}"></div>
@@ -52,13 +50,11 @@
             </div>
         </div>
 
-    </div>
+    <p id="explanation" class="explanation-message" style="font-weight:bold;color:#0033aa;"></p>
 
-    <!-- SIDE BY SIDE CHARTS -->
     <div class="charts-row">
-
         <div class="chart-box">
-            <h2>Probability (Bar Graph)</h2>
+            <h2>Results (Bar Graph)</h2>
             <canvas id="resultsChart"></canvas>
         </div>
 
@@ -66,7 +62,6 @@
             <h2>Probability Over Time (Line Graph)</h2>
             <canvas id="lineChart"></canvas>
         </div>
-
     </div>
 
     <script src="{{ url_for('static', filename='script.js') }}"></script>
