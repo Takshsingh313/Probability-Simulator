@@ -27,7 +27,6 @@
 
     <div class="animation-area">
 
-        <!-- LOGO (Home screen image) -->
         <div id="logoBox" class="logo-box">
             <img src="{{ url_for('static', filename='logo.png') }}" class="logo-img">
         </div>
@@ -38,7 +37,6 @@
             <div class="side tails"><img src="{{ url_for('static', filename='tail.png') }}"></div>
         </div>
 
-        <!-- 3D DICE (single die) -->
         <div class="cube-container switchFade" id="cubeContainer" style="display:none;">
             <div class="cube" id="diceCube">
                 <div class="face face1"><img src="{{ url_for('static', filename='dice1.png') }}"></div>
@@ -49,6 +47,33 @@
                 <div class="face face6"><img src="{{ url_for('static', filename='dice6.png') }}"></div>
             </div>
         </div>
+
+    
+        <div class="two-dice-area" id="twoDiceArea" style="display:none;">
+            <div class="cube-container small-cube">
+                <div class="cube" id="diceA">
+                    <div class="face face1"><img src="{{ url_for('static', filename='dice1.png') }}"></div>
+                    <div class="face face2"><img src="{{ url_for('static', filename='dice2.png') }}"></div>
+                    <div class="face face3"><img src="{{ url_for('static', filename='dice3.png') }}"></div>
+                    <div class="face face4"><img src="{{ url_for('static', filename='dice4.png') }}"></div>
+                    <div class="face face5"><img src="{{ url_for('static', filename='dice5.png') }}"></div>
+                    <div class="face face6"><img src="{{ url_for('static', filename='dice6.png') }}"></div>
+                </div>
+            </div>
+
+            <div class="cube-container small-cube">
+                <div class="cube" id="diceB">
+                    <div class="face face1"><img src="{{ url_for('static', filename='dice1.png') }}"></div>
+                    <div class="face face2"><img src="{{ url_for('static', filename='dice2.png') }}"></div>
+                    <div class="face face3"><img src="{{ url_for('static', filename='dice3.png') }}"></div>
+                    <div class="face face4"><img src="{{ url_for('static', filename='dice4.png') }}"></div>
+                    <div class="face face5"><img src="{{ url_for('static', filename='dice5.png') }}"></div>
+                    <div class="face face6"><img src="{{ url_for('static', filename='dice6.png') }}"></div>
+                </div>
+            </div>
+        </div>
+
+    </div>
 
     <p id="explanation" class="explanation-message" style="font-weight:bold;color:#0033aa;"></p>
 
