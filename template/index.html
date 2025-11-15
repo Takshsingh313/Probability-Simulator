@@ -22,12 +22,15 @@
         <input type="number" id="trials" value="200">
 
         <button onclick="runSimulation()">Run Simulation</button>
+
+        <!-- RESET BUTTON (Style A) -->
+        <button class="reset-btn" onclick="resetSimulation()">Reset</button>
     </div>
 
     <!-- ANIMATION AREA -->
     <div class="animation-area">
 
-        <!-- 3D Coin -->
+        <!-- 3D COIN -->
         <div class="coin3d switchFade" id="coin3d">
             <div class="side heads">
                 <img src="{{ url_for('static', filename='head.png') }}">
@@ -37,19 +40,33 @@
             </div>
         </div>
 
-        <!-- Dice Image -->
-        <img id="animationImage" class="diceImg switchFade"
-             src="{{ url_for('static', filename='dice1.png') }}">
+        <!-- 3D DICE CUBE -->
+        <div class="cube-container switchFade" id="cubeContainer" style="display:none;">
+            <div class="cube" id="diceCube">
+                <div class="face face1"><img src="{{ url_for('static', filename='dice1.png') }}"></div>
+                <div class="face face2"><img src="{{ url_for('static', filename='dice2.png') }}"></div>
+                <div class="face face3"><img src="{{ url_for('static', filename='dice3.png') }}"></div>
+                <div class="face face4"><img src="{{ url_for('static', filename='dice4.png') }}"></div>
+                <div class="face face5"><img src="{{ url_for('static', filename='dice5.png') }}"></div>
+                <div class="face face6"><img src="{{ url_for('static', filename='dice6.png') }}"></div>
+            </div>
+        </div>
+
     </div>
 
-    <h2>Results (Bar Graph)</h2>
-    <div class="chart-container bar-chart-container">
-        <canvas id="resultsChart"></canvas>
-    </div>
+    <!-- SIDE BY SIDE CHARTS -->
+    <div class="charts-row">
 
-    <h2>Probability Over Time (Line Graph)</h2>
-    <div class="chart-container line-chart-container">
-        <canvas id="lineChart"></canvas>
+        <div class="chart-box">
+            <h2>Probability (Bar Graph)</h2>
+            <canvas id="resultsChart"></canvas>
+        </div>
+
+        <div class="chart-box">
+            <h2>Probability Over Time (Line Graph)</h2>
+            <canvas id="lineChart"></canvas>
+        </div>
+
     </div>
 
     <script src="{{ url_for('static', filename='script.js') }}"></script>
