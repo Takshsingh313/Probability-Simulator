@@ -77,6 +77,20 @@ button:hover {
     gap: 24px;
 }
 
+/* LOGO */
+.logo-box {
+    width: 390px;
+    height: 390px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.logo-img {
+    width: 320px;
+    filter: drop-shadow(0 0 26px rgba(255,255,255,0.9));
+}
+
 /* Coin */
 .coin3d {
     width: 160px;
@@ -146,3 +160,8 @@ button:hover {
 .face5 { transform: rotateX(90deg) translateZ(100px); }
 .face6 { transform: rotateX(-90deg) translateZ(100px); }
 
+.two-dice-area {
+    display: flex;
+    justify-content: center;
+    gap: 50px;
+}
