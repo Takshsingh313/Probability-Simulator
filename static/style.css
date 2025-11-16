@@ -6,14 +6,17 @@ body {
 
 /* Title */
 .title {
-    padding: 20px;
+    padding: 22px;
     background: linear-gradient(135deg, #4b70e1 0%, #2e8bf6 100%);
-    color: white;
     margin: 0;
-    font-size: 48px;
-    font-weight: bold;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
-    letter-spacing: 2px;
+    font-size: 50px;
+    font-weight: 600;
+    font-family: "Montserrat", sans-serif;
+    color: #212020;
+    letter-spacing: 1px;
+    
+    text-shadow: 0 0 10px rgba(49, 48, 48, 0.45);
+
 }
 
 /* Controls */
@@ -164,4 +167,15 @@ button:hover {
     display: flex;
     justify-content: center;
     gap: 50px;
+}
+/* Chart Fade-In Animation */
+.chart-fade {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+.chart-fade.show {
+    opacity: 1;
+    transform: translateY(0);
 }
