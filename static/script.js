@@ -1,19 +1,70 @@
-/* Experiment switch */
+
 document.getElementById("experiment").addEventListener("change", () => {
     switchExperiment(document.getElementById("experiment").value);
 });
 
-/* GLOBALS */
 let chart = null;
 let lineChart = null;
 
-/* Hide/Show animation objects */
+function fadeIn(element) {
+    element.style.opacity = 0;
+    element.style.transition = "opacity 0.7s ease";
+    requestAnimationFrame(() => {
+        element.style.opacity = 1;
+    });
+}
+
 function switchExperiment(experiment) {
     document.getElementById("coin3d").style.display = "none";
     document.getElementById("cubeContainer").style.display = "none";
     document.getElementById("twoDiceArea").style.display = "none";
 }
-   
+
+function runSimulation() {
+    const experiment = document.getElementById("experiment").value;
+    const trials = parseInt(document.getElementById("trials").value) || 200;
+
+    
+    document.getElementById("logoBox").style.display = "none";
+
+    fetch("/run_simulation", {
+        method: "POST",
+        body: JSON.stringify({ experiment, trials }),
+        headers: { "Content-Type": "application/json" }
+    })
+    .then(r => r.json())
+    .then(data => {
+
+        updateBarChart(data.counts);
+        updateLineChart(data.running);
+        showExplanation(data.counts, experiment);
+
+        if (experiment === "coin") {
+            document.getElementById("coin3d").style.display = "block";
+            animateCoin(
+                data.counts["Heads"] >= data.counts["Tails"]
+                ? "Heads" : "Tails"
+            );
+        }
+
+        else if (experiment === "dice") {
+            document.getElementById("cubeContainer").style.display = "block";
+            let best = Object.keys(data.counts).reduce((a,b)=>
+                data.counts[a] > data.counts[b] ? a : b
+            );
+            animateDice(parseInt(best));
+        }
+
+        else if (experiment === "two_dice") {
+            document.getElementById("twoDiceArea").style.display = "flex";
+
+            const f1 = Math.floor(Math.random()*6)+1;
+            const f2 = Math.floor(Math.random()*6)+1;
+
+            animateTwoDice(f1, f2);
+        }
+    });
+}
 
 /* CHARTS */
 function updateBarChart(counts) {
@@ -34,6 +85,7 @@ function updateBarChart(counts) {
             }]
         }
     });
+    fadeIn(ctx);
 }
 
 function updateLineChart(running) {
@@ -53,17 +105,18 @@ function updateLineChart(running) {
                 fill: true
             }]
         },
-        options: { scales: { y: { min: 0, max: 1 } } }
+        options:{
+            scales: { y: { min: 0, max: 1 } } 
+        }
     });
+    fadeIn(ctx); 
 }
 
-/* EXPLANATION */
 function showExplanation(counts, experiment) {
     const el = document.getElementById("explanation");
     el.textContent = "Simulation complete.";
 }
 
-/* COIN ANIMATION */
 function animateCoin(result) {
     const coin = document.getElementById("coin3d");
     coin.style.animation = "flipcoin 1.8s ease";
@@ -104,4 +157,14 @@ function animateTwoDice(f1, f2) {
 
     A.style.transform = `rotateX(${spinA+rot1.x}deg) rotateY(${spinA+rot1.y}deg)`;
     B.style.transform = `rotateX(${spinB+rot2.x}deg) rotateY(${spinB+rot2.y}deg)`;
+}
+/* RESET */
+function resetSimulation() {
+    if (chart) chart.destroy();
+    if (lineChart) lineChart.destroy();
+
+    document.getElementById("logoBox").style.display = "flex";
+    document.getElementById("coin3d").style.display = "none";
+    document.getElementById("cubeContainer").style.display = "none";
+    document.getElementById("twoDiceArea").style.display = "none";
 }
