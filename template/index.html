@@ -27,15 +27,18 @@
 
     <div class="animation-area">
 
+        <!-- LOGO (Home screen image) -->
         <div id="logoBox" class="logo-box">
             <img src="{{ url_for('static', filename='logo.png') }}" class="logo-img">
         </div>
-        
+
+        <!-- 3D COIN -->
         <div class="coin3d switchFade" id="coin3d" style="display:none;">
             <div class="side heads"><img src="{{ url_for('static', filename='head.png') }}"></div>
             <div class="side tails"><img src="{{ url_for('static', filename='tail.png') }}"></div>
         </div>
 
+        <!-- 3D DICE (single die) -->
         <div class="cube-container switchFade" id="cubeContainer" style="display:none;">
             <div class="cube" id="diceCube">
                 <div class="face face1"><img src="{{ url_for('static', filename='dice1.png') }}"></div>
@@ -47,7 +50,7 @@
             </div>
         </div>
 
-    
+        <!-- TWO DICE FOR SUM EXPERIMENT -->
         <div class="two-dice-area" id="twoDiceArea" style="display:none;">
             <div class="cube-container small-cube">
                 <div class="cube" id="diceA">
@@ -79,12 +82,12 @@
     <div class="charts-row">
         <div class="chart-box">
             <h2>Results (Bar Graph)</h2>
-            <canvas id="resultsChart"></canvas>
+            <canvas id="resultsChart" class="chart-fade"></canvas>
         </div>
 
         <div class="chart-box">
             <h2>Probability Over Time (Line Graph)</h2>
-            <canvas id="lineChart"></canvas>
+            <canvas id="lineChart" class="chart-fade"></canvas>
         </div>
     </div>
 
@@ -92,5 +95,3 @@
 
 </body>
 </html>
-
-
