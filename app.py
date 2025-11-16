@@ -35,12 +35,11 @@ def run_simulation():
                 most = max(results.values())
                 running_prob.append(most / i)
 
-        # choose a face to animate (most frequent single-die face)
         most_face = max(results, key=lambda k: results[k])
         return jsonify({"counts": results, "running": running_prob, "diceA": int(most_face), "diceB": None})
 
     elif experiment == "two_dice":
-        # sums 2..12
+        
         results = {str(s): 0 for s in range(2, 13)}
         for i in range(1, trials + 1):
             a = random.randint(1, 6)
@@ -51,13 +50,11 @@ def run_simulation():
                 most = max(results.values())
                 running_prob.append(most / i)
 
-        # find most frequent sum
         most_sum = int(max(results, key=lambda k: results[k]))
 
-        # choose a random valid pair (a,b) such that a + b == most_sum
         valid_pairs = [(x, most_sum - x) for x in range(1, 7) if 1 <= most_sum - x <= 6]
         if not valid_pairs:
-            # fallback: random roll
+            
             pair = (random.randint(1, 6), random.randint(1, 6))
         else:
             pair = random.choice(valid_pairs)
@@ -70,8 +67,8 @@ def run_simulation():
             "sum": most_sum
         })
 
-    # fallback
     return jsonify({"counts": {}, "running": []})
 
 if __name__ == "__main__":
     app.run(debug=True)
+
