@@ -6,14 +6,6 @@ document.getElementById("experiment").addEventListener("change", () => {
 let chart = null;
 let lineChart = null;
 
-function fadeIn(element) {
-    element.style.opacity = 0;
-    element.style.transition = "opacity 0.7s ease";
-    requestAnimationFrame(() => {
-        element.style.opacity = 1;
-    });
-}
-
 function switchExperiment(experiment) {
     document.getElementById("coin3d").style.display = "none";
     document.getElementById("cubeContainer").style.display = "none";
@@ -24,7 +16,6 @@ function runSimulation() {
     const experiment = document.getElementById("experiment").value;
     const trials = parseInt(document.getElementById("trials").value) || 200;
 
-    
     document.getElementById("logoBox").style.display = "none";
 
     fetch("/run_simulation", {
@@ -41,10 +32,7 @@ function runSimulation() {
 
         if (experiment === "coin") {
             document.getElementById("coin3d").style.display = "block";
-            animateCoin(
-                data.counts["Heads"] >= data.counts["Tails"]
-                ? "Heads" : "Tails"
-            );
+            animateCoin(data.counts["Heads"] >= data.counts["Tails"] ? "Heads" : "Tails");
         }
 
         else if (experiment === "dice") {
@@ -57,22 +45,20 @@ function runSimulation() {
 
         else if (experiment === "two_dice") {
             document.getElementById("twoDiceArea").style.display = "flex";
-
             const f1 = Math.floor(Math.random()*6)+1;
             const f2 = Math.floor(Math.random()*6)+1;
-
             animateTwoDice(f1, f2);
         }
     });
 }
 
-/* CHARTS */
 function updateBarChart(counts) {
     if (chart) chart.destroy();
     const ctx = document.getElementById("resultsChart");
 
     chart = new Chart(ctx, {
         type: "bar",
+        plugins: [ChartDataLabels],
         data: {
             labels: Object.keys(counts),
             datasets: [{
@@ -83,10 +69,28 @@ function updateBarChart(counts) {
                     "#FFA07A", "#98D8C8", "#F7DC6F"
                 ]
             }]
+        },
+        options: {
+            plugins: {
+                datalabels: {
+                    color: "#000",
+                    anchor: "end",
+                    align: "top",
+                    formatter: (value) => value,
+                    animation: {
+                        duration: 1200,
+                        easing: "easeOutQuad"
+                    }
+                }
+            },
+            animation: {
+                duration: 800,
+                onProgress: () => fadeChartsIn()
+            }
         }
     });
-    fadeIn(ctx);
 }
+
 
 function updateLineChart(running) {
     if (lineChart) lineChart.destroy();
@@ -102,19 +106,36 @@ function updateLineChart(running) {
                 borderColor: "#FF6B6B",
                 backgroundColor: "rgba(255,107,107,0.2)",
                 tension: 0.3,
-                fill: true
+                fill: true,
+                pointRadius: 5,
+                pointHoverRadius: 8,
+                pointBackgroundColor: "#FF6B6B"
             }]
         },
-        options:{
-            scales: { y: { min: 0, max: 1 } } 
+        options: {
+            plugins: {
+                tooltip: { enabled: true }   
+            },
+            scales: {
+                y: { min: 0, max: 1 }
+            },
+            animation: {
+                duration: 900,
+                onProgress: () => fadeChartsIn()
+            }
         }
     });
-    fadeIn(ctx); 
+}
+
+function fadeChartsIn() {
+    document.querySelectorAll(".chart-fade").forEach(c => {
+        c.style.opacity = "1";
+        c.style.transform = "translateY(0)";
+    });
 }
 
 function showExplanation(counts, experiment) {
-    const el = document.getElementById("explanation");
-    el.textContent = "Simulation complete.";
+    document.getElementById("explanation").textContent = "Simulation complete.";
 }
 
 function animateCoin(result) {
@@ -126,7 +147,6 @@ function animateCoin(result) {
     }, 1800);
 }
 
-/* DICE ANIMATION */
 const faceRot = {
     1:{x:0,y:0},2:{x:0,y:-90},3:{x:0,y:180},
     4:{x:0,y:90},5:{x:90,y:0},6:{x:-90,y:0}
@@ -136,21 +156,16 @@ function animateDice(face) {
     const cube = document.getElementById("diceCube");
     const rot = faceRot[face];
     const spin = 360 * (Math.floor(Math.random()*3)+2);
-
     cube.style.transition = "1.4s ease";
     cube.style.transform = `rotateX(${spin+rot.x}deg) rotateY(${spin+rot.y}deg)`;
 }
 
-/* TWO DICE ANIMATION */
 function animateTwoDice(f1, f2) {
     const A = document.getElementById("diceA");
     const B = document.getElementById("diceB");
-
-    const rot1 = faceRot[f1];
-    const rot2 = faceRot[f2];
-
     const spinA = 360 * (Math.floor(Math.random()*3)+2);
     const spinB = 360 * (Math.floor(Math.random()*3)+2);
+    const rot1 = faceRot[f1], rot2 = faceRot[f2];
 
     A.style.transition = "1.4s ease";
     B.style.transition = "1.4s ease";
@@ -158,7 +173,7 @@ function animateTwoDice(f1, f2) {
     A.style.transform = `rotateX(${spinA+rot1.x}deg) rotateY(${spinA+rot1.y}deg)`;
     B.style.transform = `rotateX(${spinB+rot2.x}deg) rotateY(${spinB+rot2.y}deg)`;
 }
-/* RESET */
+
 function resetSimulation() {
     if (chart) chart.destroy();
     if (lineChart) lineChart.destroy();
@@ -167,4 +182,9 @@ function resetSimulation() {
     document.getElementById("coin3d").style.display = "none";
     document.getElementById("cubeContainer").style.display = "none";
     document.getElementById("twoDiceArea").style.display = "none";
+
+    document.querySelectorAll(".chart-fade").forEach(c => {
+        c.style.opacity = "0";
+        c.style.transform = "translateY(20px)";
+    });
 }
