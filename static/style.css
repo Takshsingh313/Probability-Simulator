@@ -1,12 +1,12 @@
 body {
-    font-family: Arial, sans-serif;
+   font-family: 'Poppins', sans-serif;
     text-align: center;
-    background: #d68686;
+    background: #dd9c9c;
 }
 
 .title {
     padding: 22px;
-    background: linear-gradient(135deg, #4b70e1 0%, #2e8bf6 100%);
+    background: linear-gradient(135deg, #406bea 0%, #2e8bf6 100%);
     margin: 0;
     font-size: 50px;
     font-weight: 600;
@@ -61,10 +61,12 @@ button:hover {
     box-shadow: 0 4px 12px rgba(0,0,0,0.18);
     padding: 15px;
 }
-
 .chart-box canvas {
-    width: 100% !important;
-    height: 400px !important;
+    background: white;
+    padding: 10px;
+    border-radius: 12px;
+
+    box-shadow: 0 0 25px rgba(0, 102, 255, 0.40);
 }
 
 .animation-area {
@@ -77,19 +79,18 @@ button:hover {
 }
 
 .logo-box {
-    width: 390px;
-    height: 390px;
+    width: 320px;
+    height: 320px;
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
 .logo-img {
-    width: 320px;
+    width: 450px;
     filter: drop-shadow(0 0 26px rgba(255,255,255,0.9));
 }
 
-/* Coin */
 .coin3d {
     width: 160px;
     height: 160px;
@@ -122,13 +123,13 @@ button:hover {
 }
 
 .small-cube .cube {
-    width: 150px;
+    width:150px;
     height: 150px;
 }
 
 .small-cube .face img {
     width: 150px;
-    height: 150px;
+    height:200px; 
 }
 
 .cube {
@@ -150,7 +151,7 @@ button:hover {
     object-fit: cover;
 }
 
-.face1 { transform: rotateY(0deg) translateZ(100px); }
+.face1 { transform: rotateY(0deg) translateZ(100px);}
 .face2 { transform: rotateY(90deg) translateZ(100px); }
 .face3 { transform: rotateY(180deg) translateZ(100px); }
 .face4 { transform: rotateY(-90deg) translateZ(100px); }
@@ -161,12 +162,12 @@ button:hover {
     display: flex;
     justify-content: center;
     gap: 50px;
-}
 
+}
 .chart-fade {
     opacity: 0;
     transform: translateY(20px);
-    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+    transition: opactiy 0.8s ease-out, transform 0.8s ease-out;
 }
 
 .chart-fade.show {
