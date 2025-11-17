@@ -4,7 +4,6 @@ body {
     background: #d68686;
 }
 
-/* Title */
 .title {
     padding: 22px;
     background: linear-gradient(135deg, #4b70e1 0%, #2e8bf6 100%);
@@ -19,7 +18,6 @@ body {
 
 }
 
-/* Controls */
 .controls {
     margin: 20px 0;
 }
@@ -48,7 +46,6 @@ button:hover {
     background: #cc0000;
 }
 
-/* Charts */
 .charts-row {
     display: flex;
     justify-content: center;
@@ -70,7 +67,6 @@ button:hover {
     height: 400px !important;
 }
 
-/* Animation Area */
 .animation-area {
     margin-top: 20px;
     min-height: 260px;
@@ -80,7 +76,6 @@ button:hover {
     gap: 24px;
 }
 
-/* LOGO */
 .logo-box {
     width: 390px;
     height: 390px;
@@ -117,7 +112,6 @@ button:hover {
     to { transform: rotateY(1800deg); }
 }
 
-/* Dice */
 .cube-container {
     width: 220px;
     height: 220px;
@@ -168,7 +162,7 @@ button:hover {
     justify-content: center;
     gap: 50px;
 }
-/* Chart Fade-In Animation */
+
 .chart-fade {
     opacity: 0;
     transform: translateY(20px);
