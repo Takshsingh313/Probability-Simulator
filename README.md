@@ -1,2 +1,3 @@
 # Probability-Simulator
-This is basically a probability calculator where you choose the experiment along with the no. of trials and then run the simulator . It will show the frequency of each coin or dice along with highest probaility.
+This is a probability simulator that lets you select an experiment and a number of trials. After running the simulation, It displays the frequency of each outcome (e.g., die face) using a bar graph and tracks the probability over time with a line graph.
+
