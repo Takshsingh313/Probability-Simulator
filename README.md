@@ -1,5 +1,12 @@
 # Probability-Simulator
-This simulator instantly visualizes the results using a bar graph for outcome frequencies and a line graph that tracks the probability's convergence over time.
+<div align="center">
+   <img src="https://i.ibb.co/0RsdrX8R/logo.png" alt="logo" width="200"/>
+
+   
+</div>
+
+   **This simulator instantly visualizes the results using a bar graph for outcome frequencies and a line graph that tracks the probability's convergence over time.**
+   
 ## About
 This is a probability simulator that lets you select an experiment and a number of trials. After running the simulation, It displays the frequency of each outcome (e.g., die face) using a bar graph and tracks the probability over time with a line graph.
 - Try it here: [link](https://probabilitysimulator.pythonanywhere.com/)
