@@ -1,5 +1,8 @@
 # Probability-Simulator
+This simulator instantly visualizes the results using a bar graph for outcome frequencies and a line graph that tracks the probability's convergence over time.
+## About
 This is a probability simulator that lets you select an experiment and a number of trials. After running the simulation, It displays the frequency of each outcome (e.g., die face) using a bar graph and tracks the probability over time with a line graph.
+- Try it here: [link](https://probabilitysimulator.pythonanywhere.com/)
 ## Features
 
 ### Coin Flip Probability Simulation
@@ -31,6 +34,44 @@ probability-simulator/
 ├── app.py                   # flask backend 
 
 ```  
+## Installation steps
+**Clone the repo:**
+   ```bash
+   git clone https://github.com/Takshsingh313/Probability-Simulator
+   cd Probability-Simulator
+   ```
+
+2. **Create a virtual environment :**
+   
+   Makes a seprate environment
+   
+   **Windows:**
+   ```bash
+   python -m venv venv
+   .\venv\Scripts\activate
+   ```
+   
+   **macOS / Linux:**
+   ```bash
+   python3 -m venv venv
+   source venv/bin/activate
+   ```
+
+3. **Install dependencies:**
+   ```bash
+   pip install -r requirements.txt
+   ```
+   
+4. **Run the app:**
+   ```bash
+   python app.py
+   ```
+
+5. **Open it up:**
+   
+   open in the browser `http://127.0.0.1:5000`
+
+--- 
 
 ## Demo 
 - demo video of the working of web app :  [Link](https://drive.google.com/file/d/1SzzwSYFVwaBxIw5cCn-BSQ12fVAEiuDB/view?usp=sharing)
