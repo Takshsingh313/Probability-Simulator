@@ -3,6 +3,7 @@ This simulator instantly visualizes the results using a bar graph for outcome fr
 ## About
 This is a probability simulator that lets you select an experiment and a number of trials. After running the simulation, It displays the frequency of each outcome (e.g., die face) using a bar graph and tracks the probability over time with a line graph.
 - Try it here: [link](https://probabilitysimulator.pythonanywhere.com/)
+---
 ## Features
 
 ### Coin Flip Probability Simulation
@@ -15,11 +16,12 @@ This is a probability simulator that lets you select an experiment and a number 
 - A line graph tracks how probability stabilizes as trial count increases (Law of Large Numbers).
 ### Outcome Frequency Distribution
 - Bar charts show how often each coin outcome, dice face, or dice sum occurred, helping users understand randomness and variation.
-
+---
 ## Technologies used
 - Frontend: HTML, JavaScript, CSS
 - Backend: flask backend(app.py)
-- 
+
+
 ## Project Structure
 
 ```
@@ -35,7 +37,7 @@ probability-simulator/
 
 ```  
 ## Installation steps
-**Clone the repo:**
+1. **Clone the repo:**
    ```bash
    git clone https://github.com/Takshsingh313/Probability-Simulator
    cd Probability-Simulator
@@ -59,7 +61,7 @@ probability-simulator/
 
 3. **Install dependencies:**
    ```bash
-   pip install -r requirements.txt
+   pip install flask
    ```
    
 4. **Run the app:**
@@ -72,14 +74,24 @@ probability-simulator/
    open in the browser `http://127.0.0.1:5000`
 
 --- 
+## Installation steps 
+### Prerequisites
+
+- **Python 3.13+** 
+-  use **pip** for installing packages
+- **flask** 2.0 or above
+- **Any of the browser** (Chrome, Firefox, Edge)
+
+---
 
 ## Demo 
 - demo video of the working of web app :  [Link](https://drive.google.com/file/d/1SzzwSYFVwaBxIw5cCn-BSQ12fVAEiuDB/view?usp=sharing)
 
 
 
-
+---
 ## Author 
 - Email: takshsingh313@gmail.com
 - Insta id : @ [__takshsingh__](https://www.instagram.com/_takshsingh_/)
 - **Taksh Singh**
+---
